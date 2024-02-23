@@ -15,4 +15,6 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Build the Docker image
-      run: docker build . --file client/Dockerfile --tag front:$(date +%s)
+      run: |
+            cd examDevops/client
+            docker build -t front:latest .
