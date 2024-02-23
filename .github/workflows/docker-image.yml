@@ -18,4 +18,4 @@ jobs:
             docker build -t front:latest .
     - name: Build backend image
       run: |
-           docker build -t backend:latest server/Dockerfile server
+           docker build -t backend:latest -f server/Dockerfile server
