@@ -1,5 +1,5 @@
 FROM openjdk:17-jdk-slim-buster
 WORKDIR /app
-COPY examDevopsCopy/server /app
+COPY . /app
 EXPOSE 8081
 CMD ["./mvnw","sptring-boot:run"]
