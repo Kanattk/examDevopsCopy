@@ -16,7 +16,7 @@ services:
     ports:
       - 5432:5432
   backend:
-    image: back
+    image: backend
     build:
       context: ./server
     ports:
