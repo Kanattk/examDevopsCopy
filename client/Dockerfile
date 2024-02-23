@@ -1,6 +1,6 @@
 FROM node:alpine
 WORKDIR /app
-COPY examDevopsCopy/client /app
+COPY . /app
 RUN npm install  
 RUN npm run build  
 RUN npm install -g serve
