@@ -22,4 +22,5 @@ jobs:
            docker build -t backend:latest .
     - name: Run docker compose
       run: |
+           cd .
            docker-compose.yml up -d
