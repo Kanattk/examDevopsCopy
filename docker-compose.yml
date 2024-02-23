@@ -1,0 +1,27 @@
+version: '3'
+services:
+  front:
+    image: front
+    build:
+      context: ./client
+      
+    ports:
+      - 8080:8080
+  db:
+    image: postgres:15
+    environment:
+      - POSTGRES_DB=hackathon
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    ports:
+      - 5432:5432
+  backend:
+    image: back
+    build:
+      context: ./server
+    ports:
+      - 8081:8081
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/hackathon
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=postgres
