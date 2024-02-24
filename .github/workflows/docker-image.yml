@@ -27,14 +27,18 @@ jobs:
     - name: Run docker compose
       run: |
             docker-compose -f  docker-compose.yml up -d 
-  test:
-      runs-on: ubuntu-latest
-      steps:
-        - uses: actions/checkout@v3
-        - name: Check if docker is working
-          run: |
-               docker ps -a
-        - name: Curl localhost
-          run: |
-              curl localhost:8080
-              curl localhost:8081
+            
+  publish_localhost:
+    runs-on: ubuntu-latest
+    
+    needs: [build]
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Expose local server with ngrok
+        run: |
+          ngrok http 8080 http 8081 > /dev/null & # Expose both ports
+          sleep 5 # Wait for ngrok to start
+          NGROK_URL=$(curl -s http://localhost:4040/api/tunnels | jq -r '.tunnels[0].public_url')
+          echo "Ngrok URL: $NGROK_URL"
