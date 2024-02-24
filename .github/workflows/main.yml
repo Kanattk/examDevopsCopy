@@ -27,15 +27,13 @@ jobs:
       run: npm ci
 
     - name: Build
-      working-directory: client
       run: npm run build
       env:
         CI: false
 
     - name: Install serve
-      working-directory: client
       run: npm install -g serve
 
-    - name: Start server
-      working-directory: client
-      run: serve -s build -l 8080
+   # - name: Start server
+    #  working-directory: client
+    #  run: serve -s build -l 8080
