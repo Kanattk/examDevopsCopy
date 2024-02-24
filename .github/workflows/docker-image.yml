@@ -10,7 +10,7 @@ on:
   
 jobs:
 
-  build_front:
+  build:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
@@ -18,27 +18,20 @@ jobs:
       run: |
             cd client
             docker build -t front:latest .
-            
-  build_back:
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v2
     - name: Build backend image
       run: |
            cd server
            docker build -t backend:latest .
-
-  publish_localhost:
-    runs-on: ubuntu-latest
-    needs: [build_front,build_back]
-    steps:
-    - uses: actions/checkout@v2
     - name: Run docker compose
       run: |
-            docker-compose -f  docker-compose.yml up -d 
+            docker-compose -f  docker-compose.yml up -d
             sleep 10
             docker ps
             sleep 5
             curl localhost:8080
+
+
+            
+
             
  
