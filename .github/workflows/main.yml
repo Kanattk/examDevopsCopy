@@ -29,6 +29,8 @@ jobs:
     - name: Build
       working-directory: client
       run: npm run build
+      env:
+        CI: false
 
     - name: Install serve
       working-directory: client
