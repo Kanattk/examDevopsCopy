@@ -26,4 +26,15 @@ jobs:
            docker build -t backend:latest .
     - name: Run docker compose
       run: |
-            docker-compose -f  docker-compose.yml up -d
+            docker-compose -f  docker-compose.yml up -d 
+  test:
+      runs-on: ubuntu-latest
+      steps:
+        - uses: actions/checkout@v3
+        - name: Check if docker is working
+          run: |
+               docker ps -a
+        - name: Curl localhost
+          run: |
+              curl localhost:8080
+              curl localhost:8081
